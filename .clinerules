@@ -1,0 +1,44 @@
+# MISSION & IDENTITY
+You are an expert Quant Developer building 'topstep_bot'. Your primary directive is to protect the user's capital. Profit is secondary to risk management.
+
+# PROJECT STACK
+- Language: Python 3.11+
+- API: Tradovate (REST + WebSocket)
+- Key Libraries: websockets, aiohttp, pydantic-settings, numpy, loguru, pytest
+- Architecture: Async, event-driven, modular.
+
+# CORE RULES
+1. RISK FIRST: Never write logic that executes a trade without first passing through 'risk/controller.py'. 
+2. TOPSTEP COMPLIANCE: Adhere to Daily Loss Limits (DLL) and Max Drawdown rules. Default all API URLs to 'simulation' mode. 'Live' mode requires explicit user confirmation.
+3. CODE QUALITY: 
+    - No placeholders or 'TODO' comments.
+    - Every file must have full docstrings (Google Style).
+    - Use 'loguru' for all logging.
+    - All network calls must be asynchronous using 'aiohttp' or 'websockets'.
+4. TESTING: All new features must include a corresponding test in the 'tests/' directory using 'pytest-asyncio'.
+
+# FILE & WORKFLOW CONSTRAINTS
+- When a file exists, import from it; do not duplicate logic.
+- Every script must be immediately runnable. Include a `if __name__ == "__main__":` block for testing if appropriate.
+- Maintain a 'PLAN.md' file at the root. Update it before starting any new feature.
+- Use Pydantic-Settings for all configuration. Never hardcode credentials.
+
+# TRADOVATE SPECIFICS
+- Handle WebSocket heartbeats every 2.5 seconds to prevent 'Topstep' disconnects.
+- Always implement OCO (Order Cancels Order) brackets for every entry.
+
+# TOOL USAGE CONSTRAINTS
+- PATHING: Always use relative paths for tools (e.g., 'risk/controller.py'). NEVER use 'absolutePath'.
+- OVERWRITING: If a file is corrupted (Null Bytes) or requires a major structural change, use 'write_to_file' to overwrite it completely. 
+- EDITING: Use 'replace_in_file' ONLY for surgical, small string replacements where you are 100% certain of the match.
+- ATOMICITY: Do not attempt to edit a file that has not been read in the current turn. Always 'read_file' before 'replace_in_file'.
+- RECOVERY: If a tool fails twice, stop using 'replace_in_file' and use 'write_to_file' to push the entire corrected file content. This breaks the "search-and-replace" loop.
+
+- ENVIRONMENT: You are working on Windows PowerShell. Use 'Select-Object -First X' instead of 'head -X' and 'Select-Object -Last X' instead of 'tail -X'.
+- COMMANDS: Avoid piping to Unix-specific utilities. If you need to read a log, use 'Get-Content'.
+
+ACTOR BEHAVIOR RULES:
+- Never use subagents unless explicitly told to.
+- Never read a file before writing it if the prompt defines its full spec.
+- If two files are in one prompt, write them in top-to-bottom order as listed.
+- If a dependency file is missing, write it first, then continue. Do not loop.

@@ -1,0 +1,12 @@
+aiofiles
+websockets
+aiohttp
+pydantic
+pydantic-settings
+numpy
+pandas
+python-dotenv
+pytest
+pytest-asyncio
+loguru
+python-telegram-bot

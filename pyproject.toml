@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "topstep_bot"
+version = "0.1.0"
+description = "Algorithmic trading bot for Tradovate API targeting Topstep funded futures accounts"
+authors = [
+    {name = "Your Name", email = "you@example.com"}
+]
+dependencies = [
+    "websockets",
+    "aiohttp",
+    "pydantic",
+    "pydantic-settings",
+    "numpy",
+    "pandas",
+    "python-dotenv",
+    "loguru",
+    "python-telegram-bot"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v"
